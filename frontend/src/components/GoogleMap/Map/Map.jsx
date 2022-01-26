@@ -1,21 +1,22 @@
 import React, { useRef, useState, useEffect } from 'react';
 
-const Map = () => {
+const Map = ({ onClick, Children, ...options }) => {
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
 
   useEffect(() => {
     if (mapRef.current && !map) {
       const map = new window.google.maps.Map(mapRef.current, {
-        center: { lat: 23.924972, lng: 90.263242 },
-        zoom: 15,
+        ...options,
       });
       setMap(map);
     }
-  }, [map, mapRef]);
+  }, [map, mapRef, options]);
+
   return (
     <>
       <div ref={mapRef} id='map' />
+      {React.Children.map()}
     </>
   );
 };

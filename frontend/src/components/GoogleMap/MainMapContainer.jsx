@@ -14,7 +14,7 @@ const MapMainComponent = () => {
   };
   return (
     <Wrapper apiKey={process.env.REACT_APP_GOOGLE_MAP_API} render={render}>
-      <Map />
+      <Map center={{ lat: 23.924972, lng: 90.263242 }} zoom={15} />
     </Wrapper>
   );
 };
