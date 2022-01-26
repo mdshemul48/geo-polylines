@@ -1,6 +1,4 @@
-import React from 'react';
-
-import { Wrapper } from '@googlemaps/react-wrapper';
+import React, { useState } from 'react';
 
 // this is just wrapping map component and importing util for google map
 
@@ -10,13 +8,19 @@ import Map from './Map/Map';
 import Marker from './Marker/Marker';
 
 const MapMainComponent = () => {
-  const mark = new window.google.maps.LatLng({
-    lat: 23.924972,
-    lng: 90.263242,
-  });
+  const [markers, setMarker] = useState([]);
+  const markerHandler = (event) => {
+    setMarker((prevState) => [...prevState, event.latLng]);
+  };
   return (
-    <Map center={{ lat: 23.924972, lng: 90.263242 }} zoom={15}>
-      <Marker position={mark} />
+    <Map
+      center={{ lat: 23.924972, lng: 90.263242 }}
+      zoom={15}
+      onClick={markerHandler}
+    >
+      {markers.map((item, index) => {
+        return <Marker position={item} key={index} />;
+      })}
     </Map>
   );
 };

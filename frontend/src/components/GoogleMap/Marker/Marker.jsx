@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 const Marker = (props) => {
-  console.log(props);
   const [marker, setMarker] = useState();
   useEffect(() => {
     if (!marker) {
@@ -14,6 +13,7 @@ const Marker = (props) => {
       }
     };
   }, [marker]);
+
   React.useEffect(() => {
     if (marker) {
       marker.setOptions(props);

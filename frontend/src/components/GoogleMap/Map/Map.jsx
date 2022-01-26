@@ -11,21 +11,14 @@ const Map = ({ onClick, children, ...options }) => {
         ...options,
       });
       setMap(map);
-    }
-  }, [map, mapRef, options]);
-
-  // this is adding event listener to the map
-  useEffect(() => {
-    if (map && onClick) {
       map.addListener('click', onClick);
     }
-  }, [onClick, map]);
+  }, [map, mapRef, options]);
   return (
     <>
       <div ref={mapRef} id='map' />
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          console.log('this is ', child);
           return React.cloneElement(child, { map });
         }
       })}
