@@ -13,7 +13,7 @@ const Map = ({ onClick, children, ...options }) => {
       setMap(map);
       map.addListener('click', onClick);
     }
-  }, [map, mapRef, options]);
+  }, [map, mapRef, options, onClick]);
   return (
     <>
       <div ref={mapRef} id='map' />
