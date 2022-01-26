@@ -15,7 +15,7 @@ const MapMainComponent = () => {
   };
   return (
     <Map
-      center={{ lat: 21.291982, lng: -157.821856 }}
+      center={{ lat: 23.915780753330143, lng: 90.25813858720137 }}
       zoom={3}
       onClick={markerHandler}
     >
