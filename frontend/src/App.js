@@ -1,9 +1,15 @@
 import './App.css';
 
+// components
+import MapMainComponent from './components/GoogleMap/MainMapContainer';
+
+// styles
+import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div className='App'>
-      <h1>Google Map</h1>
+      <h1>Google Initial Demo</h1>
+      <MapMainComponent />
     </div>
   );
 }
