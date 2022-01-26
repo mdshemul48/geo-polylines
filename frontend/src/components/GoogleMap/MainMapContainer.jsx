@@ -7,15 +7,17 @@ import { Wrapper } from '@googlemaps/react-wrapper';
 // components
 import Map from './Map/Map';
 
+import Marker from './Marker/Marker';
+
 const MapMainComponent = () => {
-  const render = (status) => {
-    console.log(status);
-    return null;
-  };
+  const mark = new window.google.maps.LatLng({
+    lat: 23.924972,
+    lng: 90.263242,
+  });
   return (
-    <Wrapper apiKey={process.env.REACT_APP_GOOGLE_MAP_API} render={render}>
-      <Map center={{ lat: 23.924972, lng: 90.263242 }} zoom={15} />
-    </Wrapper>
+    <Map center={{ lat: 23.924972, lng: 90.263242 }} zoom={15}>
+      <Marker position={mark} />
+    </Map>
   );
 };
 

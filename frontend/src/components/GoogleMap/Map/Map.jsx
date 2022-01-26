@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 
-const Map = ({ onClick, Children, ...options }) => {
+const Map = ({ onClick, children, ...options }) => {
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
 
@@ -20,12 +20,12 @@ const Map = ({ onClick, Children, ...options }) => {
       map.addListener('click', onClick);
     }
   }, [onClick, map]);
-
   return (
     <>
       <div ref={mapRef} id='map' />
-      {React.Children.map(Children, (child) => {
+      {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
+          console.log('this is ', child);
           return React.cloneElement(child, { map });
         }
       })}
