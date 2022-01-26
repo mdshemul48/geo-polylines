@@ -1,7 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-const Polyline = ({ map, coordinates }) => {
-  const [polyline, setPolyline] = useState();
+const Polyline = ({ map, coordinates, onClick }) => {
+  const [polyline, setPolyline] = useState(null);
+
+  const removeVertexHandler = useCallback(
+    (event) => {
+      if (event.vertex === undefined) {
+        return;
+      }
+      polyline.getPath().removeAt(event.vertex);
+    },
+    [polyline]
+  );
 
   useEffect(() => {
     setPolyline(
@@ -18,11 +28,17 @@ const Polyline = ({ map, coordinates }) => {
   useEffect(() => {
     if (polyline) {
       polyline.setMap(map);
+
+      window.google.maps.event.addListener(
+        polyline,
+        'contextmenu',
+        removeVertexHandler
+      );
       return () => {
         polyline.setMap(null);
       };
     }
-  }, [map, polyline]);
+  }, [map, polyline, onClick, removeVertexHandler]);
 
   return null;
 };

@@ -13,13 +13,17 @@ const MapMainComponent = () => {
   const markerHandler = (event) => {
     setPolyline((prevState) => [...prevState, event.latLng]);
   };
+
+  const onClickHandler = (event) => {
+    console.log(event);
+  };
   return (
     <Map
       center={{ lat: 23.915780753330143, lng: 90.25813858720137 }}
-      zoom={3}
+      zoom={15}
       onClick={markerHandler}
     >
-      <Polyline coordinates={polyline} />
+      <Polyline coordinates={polyline} onClick={onClickHandler} />
     </Map>
   );
 };
