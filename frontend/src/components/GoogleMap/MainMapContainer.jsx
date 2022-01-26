@@ -5,22 +5,21 @@ import React, { useState } from 'react';
 // components
 import Map from './Map/Map';
 
-import Marker from './Marker/Marker';
+// import Marker from './Marker/Marker';
+import Polyline from './PolyLine/Polyline';
 
 const MapMainComponent = () => {
-  const [markers, setMarker] = useState([]);
+  const [polyline, setPolyline] = useState([]);
   const markerHandler = (event) => {
-    setMarker((prevState) => [...prevState, event.latLng]);
+    setPolyline((prevState) => [...prevState, event.latLng]);
   };
   return (
     <Map
-      center={{ lat: 23.924972, lng: 90.263242 }}
-      zoom={15}
+      center={{ lat: 21.291982, lng: -157.821856 }}
+      zoom={3}
       onClick={markerHandler}
     >
-      {markers.map((item, index) => {
-        return <Marker position={item} key={index} />;
-      })}
+      <Polyline coordinates={polyline} />
     </Map>
   );
 };
